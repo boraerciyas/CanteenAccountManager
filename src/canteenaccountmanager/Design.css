@@ -1,3 +1,12 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 10, 2017, 11:58:56 AM
+    Author     : ybe
+*/
 #shiny-orange {
     -fx-background-color: 
         linear-gradient(#ffd65b, #e68400),
@@ -12,14 +21,5 @@
     -fx-font-size: 20px;
     -fx-padding: 10 10 10 10;
 }
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 10, 2017, 11:58:56 AM
-    Author     : ybe
-*/
 
 

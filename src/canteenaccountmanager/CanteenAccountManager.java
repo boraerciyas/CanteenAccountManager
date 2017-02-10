@@ -16,6 +16,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -52,6 +55,8 @@ public class CanteenAccountManager extends Application {
         debtButton.setId("shiny-orange");
         
         Button addAccountButton = new Button("Kullanıcı Ekle");
+        addAccountButton.applyCss();
+        addAccountButton.setId("shiny-orange");
         debtButton.setTooltip(new Tooltip("Borç Hesaplarını Görüntülemek ve Düzenlemek için Tıklayınız"));
         addAccountButton.setTooltip(new Tooltip("Yeni Bir Kullanıcı Eklemek İçin Tıklayınız"));
         
@@ -74,21 +79,33 @@ public class CanteenAccountManager extends Application {
         kaanButton.applyCss();
         kaanButton.setId("shiny-orange");
         
+        Text titleUser = new Text("Kullanıcılar");
+        titleUser.setFill(Color.RED);
+        titleUser.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        
         HBox hboxUser = new HBox(1);
         hboxUser.setSpacing(25);
         hboxUser.alignmentProperty().set(Pos.CENTER);
         hboxUser.getChildren().addAll(boraButton, kaanButton);
         
-        VBox vbox = new VBox(2);
+        VBox vbox = new VBox(3);
         vbox.setSpacing(25);
         vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(hboxDept, hboxUser, addAccountButton);
+        vbox.getChildren().addAll(hboxDept, titleUser, hboxUser, addAccountButton);
         
         BorderPane root = new BorderPane();
         root.setCenter(vbox);
         
-        Scene S1 = new Scene(root, 600, 450);
+        Scene S1 = new Scene(root, 600, 500);
         return S1;
     }
+    
+    /*private Scene DebtPageDesign()  {
+        
+        
+        
+        Scene scene = new Scene(root, 720, 720);
+        return scene;
+    }*/
 }
 
