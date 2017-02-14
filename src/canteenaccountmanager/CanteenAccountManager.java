@@ -9,10 +9,12 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -35,8 +37,8 @@ public class CanteenAccountManager extends Application {
     @Override
     public void start(Stage stage) {
         
-        Scene scene = LoginDesign();
-        scene.getStylesheets().add("canteenaccountmanager//Design.css");
+        Scene scene = DebtPageDesign();
+        //scene.getStylesheets().add("canteenaccountmanager//Design.css");
         stage.setTitle("Canteen Account Manager");
         stage.setScene(scene);
         stage.show();
@@ -100,12 +102,21 @@ public class CanteenAccountManager extends Application {
         return S1;
     }
     
-    /*private Scene DebtPageDesign()  {
+    private Scene DebtPageDesign()  {
+        
+        Image backPage = new Image("img//arrow-back-icon(1).png");
+        ImageView backPageView = new ImageView(backPage);
+        
+        Label title = new Label("Hesap Listesi");
+        
+        FlowPane top = new FlowPane(backPageView, title);
         
         
+        BorderPane root = new BorderPane();
+        root.setTop(top);
         
-        Scene scene = new Scene(root, 720, 720);
+        Scene scene = new Scene(root, 600, 500);
         return scene;
-    }*/
+    }
 }
 
