@@ -110,10 +110,11 @@ public class CanteenAccountManager extends Application {
         Label title = new Label("Hesap Listesi");
         
         FlowPane top = new FlowPane(backPageView, title);
-        
+        top.setAlignment(Pos.BASELINE_CENTER);
         
         BorderPane root = new BorderPane();
         root.setTop(top);
+        
         
         Scene scene = new Scene(root, 600, 500);
         return scene;
