@@ -6,7 +6,6 @@
 package canteenaccountmanager;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -30,6 +30,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.swing.plaf.multi.MultiColorChooserUI;
 
 /**
  *
@@ -46,12 +47,12 @@ public class CanteenAccountManager extends Application {
     /**
      *
      */
-    public final static ObservableList account_ObservableList = FXCollections.observableArrayList();
+    private final static ObservableList account_ObservableList = FXCollections.observableArrayList();
     public final static ObservableList debts_ObservableList = FXCollections.observableArrayList();
     private ListView debts_listView = new ListView();
 
+    JavaFXMultiColumnChart listView = new JavaFXMultiColumnChart();
     
-        
     @Override
     public void start(Stage stage) {
         
@@ -74,11 +75,11 @@ public class CanteenAccountManager extends Application {
         debtButton.applyCss();
         debtButton.setId("shiny-orange");
         
-        Button addAccountButton = new Button("Kullanıcı Ekle");
+        Button addAccountButton = new Button("KullanÄ±cÄ± Ekle");
         addAccountButton.applyCss();
         addAccountButton.setId("shiny-orange");
-        debtButton.setTooltip(new Tooltip("Borç Hesaplarını Görüntülemek ve Düzenlemek için Tıklayınız"));
-        addAccountButton.setTooltip(new Tooltip("Yeni Bir Kullanıcı Eklemek İçin Tıklayınız"));
+        debtButton.setTooltip(new Tooltip("Borç Hesaplarını Görüntülemek ve Düzenlemek için tıklayınız"));
+        addAccountButton.setTooltip(new Tooltip("Yeni Bir Kullanıcı Eklemek için Tıklayınız"));
         
         HBox hboxDept = new HBox(0);
         hboxDept.setAlignment(Pos.BASELINE_RIGHT);
@@ -99,7 +100,7 @@ public class CanteenAccountManager extends Application {
         kaanButton.applyCss();
         kaanButton.setId("shiny-orange");
         
-        Text titleUser = new Text("Kullanıcılar");
+        Text titleUser = new Text("KullanÄ±cÄ±lar");
         titleUser.setFill(Color.RED);
         titleUser.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         
@@ -125,7 +126,8 @@ public class CanteenAccountManager extends Application {
     	back.setFitHeight(50);
     	back.setFitWidth(50);
     	Button backPageButton = new Button(null, back);
-    	
+        
+        
     	Label title = new Label("Hesap Listesi");
     	title.fontProperty().setValue(Font.font("Arial", FontWeight.BOLD, 24));
     	title.setTextFill(Color.BLUE);
@@ -144,10 +146,11 @@ public class CanteenAccountManager extends Application {
         * 
         ******/        
         
+        
         String[] test_array = new String[20];
         test_array[0] = "Evrim";
         test_array[1] = "Eda Abla";
-        test_array[2] = "Tarık Bey";
+        test_array[2] = "TarÄ±k Bey";
         
         String[] test_debts = new String[20];
         test_debts[0] = "20.50";
@@ -157,8 +160,8 @@ public class CanteenAccountManager extends Application {
         ListView<String> accounts_listView = new ListView<>();
         accounts_listView.setEditable(true);
         
-        account_ObservableList.addAll(test_array);
-        accounts_listView.setItems(account_ObservableList);
+        getAccountObservablelist().addAll(test_array);
+        accounts_listView.setItems(getAccountObservablelist());
         
         debts_ObservableList.addAll(test_debts);
         debts_listView.setItems(debts_ObservableList);
@@ -171,27 +174,31 @@ public class CanteenAccountManager extends Application {
                 } 
             });
         HBox box = new HBox(accounts_listView, debts_listView);
-
+        
+        
         BorderPane root = new BorderPane();
         root.setTop(gridTop);
-        root.setCenter(box);
+        root.setCenter(debts_listView);
         Scene scene = new Scene(root, 500, 500);
         return scene;
     }
 
     //Özge Camel-Stationary Travaller
     
+    public static ObservableList getAccountObservablelist() {
+            return account_ObservableList;
+    }
+
     private static class TextFieldRectCell extends ListCell<String> {
 
         @Override
         public void updateItem(String item, boolean empty)  {
             super.updateItem(item, empty);
-                TextField tf = new TextField();
-                if(item != null)   {
+            TextField tf = new TextField();
+            if(item != null)   {
                 tf.setText(item);
-                    setGraphic(tf);
-            }
+                setGraphic(tf);
+                }
         }                
     }
 }
-
